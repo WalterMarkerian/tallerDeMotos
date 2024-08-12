@@ -21,7 +21,7 @@ public class Cliente {
     private Genero genero;
     private String telefono;
     private String domicilio;
-    private List<Motocicleta> motocicleta;
+    private List<Motocicleta> motocicletas;
 
     // Getters y setters
 }

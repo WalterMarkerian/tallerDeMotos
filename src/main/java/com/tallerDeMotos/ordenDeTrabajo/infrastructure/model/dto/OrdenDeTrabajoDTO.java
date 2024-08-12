@@ -1,6 +1,7 @@
 package com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
@@ -38,6 +39,11 @@ public class OrdenDeTrabajoDTO {
     @JsonProperty(value = "altaOrden", required = true)
     @NotNull(message = "La fecha de alta es requerida.")
     Timestamp altaOrden;
+
+    @Schema(description = "Motocicleta asociada a la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(value = "motocicleta", required = true)
+    @NotNull(message = "La motocicleta es requerida.")
+    MotocicletaDTO motocicleta; // Suponiendo que tienes un DTO para Motocicleta
 
     // Getters y setters
 }

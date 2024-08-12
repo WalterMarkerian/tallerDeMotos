@@ -9,9 +9,9 @@ import java.util.Optional;
 @Repository
 public interface ClienteRepository extends JpaRepository<ClienteEntity, String> {
 
-    void deleteByDni(String dni);
+    void deleteByDni(Long dni);
 
-    Optional<ClienteEntity> findByDni(String dni);
+    Optional<ClienteEntity> findByDni(Long dni);
 
-    boolean existsByDni(String dni);
+    boolean existsByDni(Long dni);
 }

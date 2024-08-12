@@ -1,6 +1,7 @@
 package com.tallerDeMotos.cliente.infrastructure.model.dto;
 
 import com.tallerDeMotos.cliente.domain.enums.Genero;
+import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -48,8 +50,8 @@ public class ClienteDTO {
     @NotBlank(message = "El domicilio es requerido.")
     String domicilio;
 
-//    @Schema(description = "Lista de motocicletas del cliente", example = "[{ \"id\": 1, \"marca\": \"Yamaha\", \"modelo\": \"MT-09\" }]")
-//    @NotNull(message = "La lista de motocicletas no puede ser nula.")
-//    List<MotocicletaDTO> motocicletas;
+    @Schema(description = "Lista de motocicletas del cliente", example = "[{ \"id\": 1, \"marca\": \"Yamaha\", \"modelo\": \"MT-09\" }]")
+    @NotNull(message = "La lista de motocicletas no puede ser nula.")
+    List<MotocicletaDTO> motocicletas;
 
 }
