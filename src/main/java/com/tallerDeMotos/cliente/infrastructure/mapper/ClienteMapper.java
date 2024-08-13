@@ -9,20 +9,28 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring", uses = MotocicletaMapper.class)
+@Mapper(componentModel = "spring", uses = {MotocicletaMapper.class})
 public interface ClienteMapper {
     ClienteMapper INSTANCE = Mappers.getMapper(ClienteMapper.class);
 
-    @Mapping(source = "motocicletas", target = "motocicletas")
-    ClienteDTO toDTO(ClienteEntity clienteEntity); // Convierte ClienteEntity a ClienteDTO
+    // Mapea de ClienteDTO a Cliente (Entidad del Dominio)
+    Cliente toCliente(ClienteDTO clienteDTO);
 
-    @Mapping(source = "motocicletas", target = "motocicletas")
-    ClienteEntity toEntity(Cliente cliente); // Convierte Cliente a ClienteEntity
+    // Mapea de Cliente a ClienteDTO
+    ClienteDTO toClienteDTO(Cliente cliente);
 
-    Cliente toDomain(ClienteDTO clienteDTO); // Convierte ClienteDTO a Cliente
+    // Mapea de ClienteEntity a Cliente (Entidad del Dominio)
+    @Mapping(source = "fechaNacimiento", target = "fechaNacimiento")
+    Cliente toCliente(ClienteEntity clienteEntity);
 
-    Cliente toDomain(ClienteEntity clienteEntity); // Convierte ClienteEntity a Cliente
+    // Mapea de Cliente a ClienteEntity
+    ClienteEntity toClienteEntity(Cliente cliente);
 
-    @Mapping(source = "motocicletas", target = "motocicletas")
+    // Mapea de ClienteEntity a ClienteDTO
+    ClienteDTO toClienteDTO(ClienteEntity clienteEntity);
+
+    // Actualiza una entidad ClienteEntity con los datos de ClienteDTO
+    @Mapping(target = "id", ignore = true) // No se actualiza el ID
     void updateEntityFromDTO(ClienteDTO clienteDTO, @MappingTarget ClienteEntity clienteEntity);
+
 }

@@ -1,5 +1,4 @@
-package com.tallermecanico.commons.application.create_message;
-
+package com.tallerDeMotos.commons.application.create_message;
 
 public interface ErrorMessageCreator {
 

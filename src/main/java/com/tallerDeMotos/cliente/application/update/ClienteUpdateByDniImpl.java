@@ -25,6 +25,6 @@ public class ClienteUpdateByDniImpl implements ClienteUpdateByDni {
 
         clienteMapper.updateEntityFromDTO(clienteDTO, clienteEntity);
         clienteEntity = clienteRepository.save(clienteEntity);
-        return clienteMapper.toDTO(clienteEntity);
+        return clienteMapper.toClienteDTO(clienteEntity);
     }
 }

@@ -23,6 +23,6 @@ public class ClienteFindByDniImpl implements ClienteFindByDni {
         ClienteEntity clienteEntity = clienteRepository.findByDni(dni)
                 .orElseThrow(ClienteNotFoundException::new);
 
-        return clienteMapper.toDTO(clienteEntity);
+        return clienteMapper.toClienteDTO(clienteEntity);
     }
 }

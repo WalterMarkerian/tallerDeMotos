@@ -6,6 +6,7 @@ import com.tallerDeMotos.cliente.infrastructure.mapper.ClienteMapper;
 import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 import com.tallerDeMotos.cliente.infrastructure.model.entity.ClienteEntity;
 import com.tallerDeMotos.cliente.infrastructure.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,22 +21,16 @@ public class ClienteCreatorImpl implements ClienteCreator {
     }
 
     @Override
+    @Transactional
     public ClienteDTO createCliente(ClienteDTO clienteDTO) throws ClienteDuplicateDniException {
         // Verifica si el DNI ya existe
         if (clienteRepository.existsByDni(clienteDTO.getDni())) {
             throw new ClienteDuplicateDniException();
         }
+        Cliente cliente = clienteMapper.toCliente(clienteDTO);
+        ClienteEntity clienteEntity = clienteMapper.toClienteEntity(cliente);
+        clienteRepository.save(clienteEntity);
 
-        // Mapea el DTO a dominio
-        Cliente cliente = clienteMapper.toDomain(clienteDTO);
-
-        // Mapea el dominio a entidad
-        ClienteEntity clienteEntity = clienteMapper.toEntity(cliente);
-
-        // Guarda la entidad en la base de datos
-        clienteEntity = clienteRepository.save(clienteEntity);
-
-        // Convertimos la entidad guardada de nuevo a DTO y lo retornamos
-        return clienteMapper.toDTO(clienteEntity);
+        return clienteMapper.toClienteDTO(cliente);
     }
 }

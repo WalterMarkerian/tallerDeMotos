@@ -7,7 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -38,12 +39,17 @@ public class OrdenDeTrabajoDTO {
     @Schema(description = "Fecha de alta de la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED, example = "2024-08-10T14:30:00")
     @JsonProperty(value = "altaOrden", required = true)
     @NotNull(message = "La fecha de alta es requerida.")
-    Timestamp altaOrden;
+    LocalDate altaOrden;
 
     @Schema(description = "Motocicleta asociada a la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(value = "motocicleta", required = true)
     @NotNull(message = "La motocicleta es requerida.")
     MotocicletaDTO motocicleta; // Suponiendo que tienes un DTO para Motocicleta
+
+    @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]")
+    @JsonProperty(value = "ordenesDeTrabajo")
+    List<OrdenDeTrabajoDTO> ordenesDeTrabajo;
+
 
     // Getters y setters
 }

@@ -28,7 +28,7 @@ public class ClienteFindAllImpl implements ClienteFindAll {
             throw new ClientesNotFoundException();
         }
         return clienteEntities.stream()
-                .map(clienteMapper::toDTO)
+                .map(clienteMapper::toClienteDTO)
                 .collect(Collectors.toList());
     }
 }

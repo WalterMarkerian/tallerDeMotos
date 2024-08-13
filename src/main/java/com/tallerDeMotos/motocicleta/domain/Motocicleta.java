@@ -1,5 +1,6 @@
 package com.tallerDeMotos.motocicleta.domain;
 
+import com.tallerDeMotos.cliente.domain.Cliente;
 import com.tallerDeMotos.motocicleta.domain.enums.Marca;
 import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajo;
 import lombok.Data;
@@ -19,7 +20,12 @@ public class Motocicleta {
     private String chasis;
     private Integer kilometraje;
     private LocalDate altaMoto;
-    private List<OrdenDeTrabajo> ordenDeTrabajo;
+    private List<OrdenDeTrabajo> ordenesDeTrabajo;
+    private Cliente cliente;
 
-    // Getters y setters
+    // Getters y Setters
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

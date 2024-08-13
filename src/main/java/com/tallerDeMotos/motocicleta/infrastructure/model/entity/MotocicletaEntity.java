@@ -42,12 +42,12 @@ public class MotocicletaEntity {
     @Column(name = "alta_moto")
     private LocalDate altaMoto;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
 
-    @OneToMany(mappedBy = "motocicleta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrdenDeTrabajoEntity> ordenesDeTrabajo;
-
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
     // Getters y setters
 }

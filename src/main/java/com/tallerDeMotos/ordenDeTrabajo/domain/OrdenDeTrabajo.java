@@ -2,7 +2,7 @@ package com.tallerDeMotos.ordenDeTrabajo.domain;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 public class OrdenDeTrabajo {
@@ -10,6 +10,6 @@ public class OrdenDeTrabajo {
     private Integer items;
     private String descripcion;
     private Double monto;
-    private Timestamp altaOrden;
+    private LocalDate altaOrden;
     // Getters y setters
 }

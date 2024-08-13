@@ -4,7 +4,7 @@ import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEnti
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "ordenes_de_trabajo")
@@ -27,7 +27,7 @@ public class OrdenDeTrabajoEntity {
     private Double monto;
 
     @Column(name = "alta_orden", nullable = false)
-    private Timestamp altaOrden;
+    private LocalDate altaOrden;
 
     @ManyToOne
     @JoinColumn(name = "motocicleta_id", nullable = false)

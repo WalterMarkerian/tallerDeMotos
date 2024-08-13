@@ -1,4 +1,4 @@
-package com.tallermecanico.commons.application.create_message;
+package com.tallerDeMotos.commons.application.create_message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

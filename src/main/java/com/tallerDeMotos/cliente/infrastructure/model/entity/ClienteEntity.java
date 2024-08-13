@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,8 +35,17 @@ public class ClienteEntity {
     private String telefono;
     private String domicilio;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<MotocicletaEntity> motocicletas;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MotocicletaEntity> motocicletas = new ArrayList<>();
 
     // Getters y setters
+    public void addMotocicleta(MotocicletaEntity motocicletaEntity) {
+        motocicletas.add(motocicletaEntity);
+        motocicletaEntity.setCliente(this);
+    }
+
+    public void removeMotocicleta(MotocicletaEntity motocicletaEntity) {
+        motocicletas.remove(motocicletaEntity);
+        motocicletaEntity.setCliente(null);
+    }
 }

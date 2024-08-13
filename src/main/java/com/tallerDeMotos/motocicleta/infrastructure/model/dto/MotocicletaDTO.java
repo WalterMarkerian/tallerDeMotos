@@ -1,6 +1,7 @@
 package com.tallerDeMotos.motocicleta.infrastructure.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 import com.tallerDeMotos.motocicleta.domain.enums.Marca;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -54,7 +55,12 @@ public class MotocicletaDTO {
     @Schema(description = "Fecha de alta de la moto", example = "2024-08-10T14:30:00")
     @JsonProperty(value = "altaMoto")
     @NotNull(message = "La fecha de alta es requerida.")
-    LocalDateTime altaMoto;
+    LocalDate altaMoto;
+
+    @Schema(description = "Cliente asociado a la motocicleta", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(value = "cliente", required = true)
+    @NotNull(message = "El cliente es requerido.")
+    ClienteDTO cliente;
 
     @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]")
     @JsonProperty(value = "ordenesDeTrabajo")
