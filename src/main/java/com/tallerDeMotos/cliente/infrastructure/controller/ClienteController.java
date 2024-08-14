@@ -4,7 +4,7 @@ import com.tallerDeMotos.cliente.application.create.ClienteCreator;
 import com.tallerDeMotos.cliente.application.delete.ClienteDeleterByDni;
 import com.tallerDeMotos.cliente.application.find_all.ClienteFindAll;
 import com.tallerDeMotos.cliente.application.find_by_dni.ClienteFindByDni;
-import com.tallerDeMotos.cliente.application.update.ClienteUpdateByDni;
+import com.tallerDeMotos.cliente.application.update_by_dni.ClienteUpdateByDni;
 import com.tallerDeMotos.cliente.domain.exception.ClienteDuplicateDniException;
 import com.tallerDeMotos.cliente.domain.exception.ClienteNotFoundException;
 import com.tallerDeMotos.cliente.domain.exception.ClientesNotFoundException;

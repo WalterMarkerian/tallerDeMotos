@@ -12,11 +12,12 @@ public interface MotocicletaMapper {
 
     MotocicletaMapper INSTANCE = Mappers.getMapper(MotocicletaMapper.class);
 
-    MotocicletaDTO toDTO(MotocicletaEntity motocicletaEntity);
+    MotocicletaDTO toMotocicletaDTO(MotocicletaEntity motocicletaEntity);
 
-    Motocicleta toDomain(MotocicletaDTO motocicletaDTO);
+    Motocicleta toMotocicletaDomain(MotocicletaDTO motocicletaDTO);
 
-    MotocicletaEntity toEntity(Motocicleta motocicleta);
+    MotocicletaEntity toMotocicletaEntity(Motocicleta motocicleta);
 
     void updateEntityFromDTO(MotocicletaDTO motocicletaDTO, @MappingTarget MotocicletaEntity motocicletaEntity);
+
 }

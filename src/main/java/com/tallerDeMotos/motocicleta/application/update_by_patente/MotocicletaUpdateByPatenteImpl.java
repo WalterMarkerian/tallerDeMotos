@@ -28,6 +28,6 @@ public class MotocicletaUpdateByPatenteImpl implements MotocicletaUpdateByPatent
         motocicletaMapper.updateEntityFromDTO(motocicletaDTO, motocicletaEntity);
         motocicletaEntity = motocicletaRepository.save(motocicletaEntity);
 
-        return motocicletaMapper.toDTO(motocicletaEntity);
+        return motocicletaMapper.toMotocicletaDTO(motocicletaEntity);
     }
 }

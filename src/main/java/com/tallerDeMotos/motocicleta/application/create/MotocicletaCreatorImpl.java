@@ -29,15 +29,15 @@ public class MotocicletaCreatorImpl implements MotocicletaCreator {
         }
 
         // Mapea el DTO a dominio
-        Motocicleta motocicleta = motocicletaMapper.toDomain(motocicletaDTO);
+        Motocicleta motocicleta = motocicletaMapper.toMotocicletaDomain(motocicletaDTO);
 
         // Mapea el dominio a entidad
-        MotocicletaEntity motocicletaEntity = motocicletaMapper.toEntity(motocicleta);
+        MotocicletaEntity motocicletaEntity = motocicletaMapper.toMotocicletaEntity(motocicleta);
 
         // Guarda la entidad en la base de datos
         MotocicletaEntity savedMotocicletaEntity = motocicletaRepository.save(motocicletaEntity);
 
         // Mapea la entidad guardada a DTO
-        return motocicletaMapper.toDTO(savedMotocicletaEntity);
+        return motocicletaMapper.toMotocicletaDTO(savedMotocicletaEntity);
     }
 }

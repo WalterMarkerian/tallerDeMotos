@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface MotocicletaRepository extends JpaRepository<MotocicletaEntity, Long> {
+public interface MotocicletaRepository extends JpaRepository<MotocicletaEntity, String> {
     void deleteByPatente(String patente);
 
     Optional<MotocicletaEntity> findByPatente(String patente);

@@ -23,6 +23,6 @@ public class MotocicletaFindByPatenteImpl implements MotocicletaFindByPatente {
         MotocicletaEntity motocicletaEntity = motocicletaRepository.findByPatente(patente)
                 .orElseThrow(MotocicletaPatenteNotFoundException::new);
 
-        return motocicletaMapper.toDTO(motocicletaEntity);
+        return motocicletaMapper.toMotocicletaDTO(motocicletaEntity);
     }
 }

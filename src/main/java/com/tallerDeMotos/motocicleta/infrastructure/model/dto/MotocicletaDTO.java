@@ -57,13 +57,13 @@ public class MotocicletaDTO {
     @NotNull(message = "La fecha de alta es requerida.")
     LocalDate altaMoto;
 
-    @Schema(description = "Cliente asociado a la motocicleta", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(value = "cliente", required = true)
+    @Schema(description = "Cliente asociado a la motocicleta", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(value = "cliente", required = false)
     @NotNull(message = "El cliente es requerido.")
     ClienteDTO cliente;
 
-    @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]")
-    @JsonProperty(value = "ordenesDeTrabajo")
+    @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(value = "ordenesDeTrabajo", required = false)
     List<OrdenDeTrabajoDTO> ordenesDeTrabajo;
 
     // Getters y setters

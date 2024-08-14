@@ -28,7 +28,7 @@ public class MotocicletaFindAllImpl implements MotocicletaFindAll {
             throw new MotocicletasNotFoundException();
         }
         return motocicletaEntities.stream()
-                .map(motocicletaMapper::toDTO)
+                .map(motocicletaMapper::toMotocicletaDTO)
                 .collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-package com.tallerDeMotos.cliente.application.update;
+package com.tallerDeMotos.cliente.application.update_by_dni;
 
 import com.tallerDeMotos.cliente.domain.exception.ClienteNotFoundException;
 import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
