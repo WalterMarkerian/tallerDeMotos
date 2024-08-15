@@ -16,10 +16,8 @@ import java.util.List;
 @Table(name = "clientes")
 @Data
 @Builder
-@NoArgsConstructor  // Este es el constructor por defecto
-@AllArgsConstructor // Este es el constructor con todos los parámetros
-//tabla en la base de datos
-//diseñada para interactuar directamente con la base de datos.
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +36,6 @@ public class ClienteEntity {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MotocicletaEntity> motocicletas = new ArrayList<>();
 
-    // Getters y setters
     public void addMotocicleta(MotocicletaEntity motocicletaEntity) {
         motocicletas.add(motocicletaEntity);
         motocicletaEntity.setCliente(this);

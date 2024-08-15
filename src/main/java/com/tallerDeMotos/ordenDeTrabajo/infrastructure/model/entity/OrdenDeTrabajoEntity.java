@@ -10,9 +10,6 @@ import java.time.LocalDate;
 @Table(name = "ordenes_de_trabajo")
 @Data
 public class OrdenDeTrabajoEntity {
-    // Es la entidad JPA que representa la estructura de la base de datos.
-    // Especifica cómo se almacenan los datos en la base de datos y permite la interacción con ella a través de un ORM como JPA.
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,5 +30,4 @@ public class OrdenDeTrabajoEntity {
     @JoinColumn(name = "motocicleta_id", nullable = false)
     private MotocicletaEntity motocicleta;
 
-    // Getters y setters
 }

@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-//encapsula la lógica de negocio
-//Es común en una arquitectura hexagonal tener esta clase para separar la
-//lógica de negocio de los detalles de la infraestructura.
 public class Cliente {
     private Long id;
     private Long dni;
@@ -24,7 +21,6 @@ public class Cliente {
     private String domicilio;
     private List<Motocicleta> motocicletas = new ArrayList<>();
 
-    // Getters y setters
     public void addMotocicleta(Motocicleta motocicleta) {
         motocicletas.add(motocicleta);
         motocicleta.setCliente(this);

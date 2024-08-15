@@ -13,9 +13,6 @@ import java.util.List;
 @Table(name = "motocicletas")
 @Data
 public class MotocicletaEntity {
-    // Es la entidad JPA que representa la estructura de la base de datos.
-    // Especifica cómo se almacenan los datos en la base de datos y permite la interacción con ella a través de un ORM como JPA.
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -49,5 +46,4 @@ public class MotocicletaEntity {
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-    // Getters y setters
 }

@@ -13,10 +13,6 @@ import java.util.List;
 @Data
 @Builder
 public class OrdenDeTrabajoDTO {
-    // Este Data Transfer Object (DTO) se utiliza para transferir datos entre la capa de presentación (o API)
-    // y el resto del sistema. Su principal función es evitar que las entidades del dominio se expongan directamente
-    // al exterior y para facilitar la validación y documentación con anotaciones como @Schema y @JsonProperty.
-
     @Schema(description = "Identificador de la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED, example = "123L")
     @JsonProperty(value = "id")
     Long id;
@@ -50,6 +46,4 @@ public class OrdenDeTrabajoDTO {
     @JsonProperty(value = "ordenesDeTrabajo")
     List<OrdenDeTrabajoDTO> ordenesDeTrabajo;
 
-
-    // Getters y setters
 }

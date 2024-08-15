@@ -10,8 +10,6 @@ import java.util.List;
 
 @Data
 public class Motocicleta {
-    //Representa el modelo de dominio, el cual encapsula la lógica empresarial
-    //y no depende de ninguna tecnología o framework específico (como JPA). Este es el "core" de tu aplicación.
     private Long id;
     private String patente;
     private Marca marca;
@@ -23,7 +21,6 @@ public class Motocicleta {
     private List<OrdenDeTrabajo> ordenesDeTrabajo;
     private Cliente cliente;
 
-    // Getters y Setters
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;

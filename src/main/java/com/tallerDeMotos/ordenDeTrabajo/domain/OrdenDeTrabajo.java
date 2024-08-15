@@ -11,5 +11,4 @@ public class OrdenDeTrabajo {
     private String descripcion;
     private Double monto;
     private LocalDate altaOrden;
-    // Getters y setters
 }
