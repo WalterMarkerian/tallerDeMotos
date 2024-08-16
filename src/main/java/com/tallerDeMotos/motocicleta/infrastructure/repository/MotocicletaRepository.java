@@ -11,7 +11,6 @@ public interface MotocicletaRepository extends JpaRepository<MotocicletaEntity, 
 
     Optional<MotocicletaEntity> findByPatente(String patente);
 
-    // Método para verificar si existe una motocicleta con la patente dada
     boolean existsByPatente(String patente);
 
 }

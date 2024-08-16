@@ -50,9 +50,10 @@ public class GeneralExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(buildGeneralResponse(e, request));
     }
 
-    @ExceptionHandler({ClienteNotFoundException.class, MotocicletaPatenteNotFoundException.class,
-            MotocicletasNotFoundException.class})
-    public ResponseEntity<Object> handleNotFoundExceptions(ClienteNotFoundException e, HttpServletRequest request) {
+    @ExceptionHandler({ClienteNotFoundException.class, ClientesNotFoundException.class,
+            MotocicletaPatenteNotFoundException.class, MotocicletasNotFoundException.class,
+            OrdenDeTrabajoNotFoundException.class, OrdenesDeTrabajoNotFoundException.class, })
+    public ResponseEntity<Object> handleNotFoundExceptions(BaseException e, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(buildGeneralResponse(e, request));
     }
 

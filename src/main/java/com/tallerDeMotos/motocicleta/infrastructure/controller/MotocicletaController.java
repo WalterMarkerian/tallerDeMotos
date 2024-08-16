@@ -56,8 +56,8 @@ public class MotocicletaController {
     }
 
     @PutMapping("/{patente}")
-    public ResponseEntity<MotocicletaDTO> updateMotocicleta(@PathVariable String patente,
-                                                            @Valid @RequestBody MotocicletaDTO motocicletaDTO) throws MotocicletaPatenteNotFoundException {
+    public ResponseEntity<MotocicletaDTO> updateMotocicleta(@PathVariable String patente, @Valid @RequestBody MotocicletaDTO motocicletaDTO)
+            throws MotocicletaPatenteNotFoundException {
         MotocicletaDTO updatedMotocicletaDTO = motocicletaUpdateByPatente.updateMotocicletaByPatente(patente, motocicletaDTO);
         return ResponseEntity.ok(updatedMotocicletaDTO);
     }
