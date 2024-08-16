@@ -37,13 +37,13 @@ public class OrdenDeTrabajoDTO {
     @NotNull(message = "La fecha de alta es requerida.")
     LocalDate altaOrden;
 
-    @Schema(description = "Motocicleta asociada a la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(value = "motocicleta", required = true)
-    @NotNull(message = "La motocicleta es requerida.")
-    MotocicletaDTO motocicleta; // Suponiendo que tienes un DTO para Motocicleta
+    @Schema(description = "Identificador de la motocicleta asociada a la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
+    @JsonProperty(value = "motocicletaId", required = true)
+    @NotNull(message = "El identificador de la motocicleta es requerido.")
+    Long motocicletaId;  // Solo se guarda el ID de la motocicleta
 
-    @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]")
-    @JsonProperty(value = "ordenesDeTrabajo")
-    List<OrdenDeTrabajoDTO> ordenesDeTrabajo;
+//    @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]")
+//    @JsonProperty(value = "ordenesDeTrabajo")
+//    List<OrdenDeTrabajoDTO> ordenesDeTrabajo;
 
 }

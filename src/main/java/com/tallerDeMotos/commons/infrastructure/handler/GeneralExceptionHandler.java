@@ -44,18 +44,20 @@ public class GeneralExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler({ClienteDuplicateDniException.class, MotocicletaDuplicatePatenteException.class})
-    public ResponseEntity<Object> handleBadRequestExceptions(ClienteDuplicateDniException e, HttpServletRequest request) {
+    @ExceptionHandler({ClienteDuplicateDniException.class, MotocicletaDuplicatePatenteException.class,
+            OrdenDeTrabajoDuplicateIdException.class})
+    public ResponseEntity<Object> handleBadRequestExceptions(BaseException e, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(buildGeneralResponse(e, request));
     }
 
-    @ExceptionHandler({ClienteNotFoundException.class, ClientesNotFoundException.class, MotocicletaPatenteNotFoundException.class, MotocicletasNotFoundException.class})
+    @ExceptionHandler({ClienteNotFoundException.class, MotocicletaPatenteNotFoundException.class,
+            MotocicletasNotFoundException.class})
     public ResponseEntity<Object> handleNotFoundExceptions(ClienteNotFoundException e, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(buildGeneralResponse(e, request));
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleGenericException(Exception e, HttpServletRequest request) {
+    public ResponseEntity<Object> handleGenericException(BaseException e, HttpServletRequest request) {
         BaseException baseException = new BaseException("ERR_UNKNOWN", "Unknown error occurred");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(buildGeneralResponse(baseException, request));
     }

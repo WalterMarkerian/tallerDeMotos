@@ -5,7 +5,9 @@ import com.tallerDeMotos.ordenDeTrabajo.infrastructure.mapper.OrdenDeTrabajoMapp
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.entity.OrdenDeTrabajoEntity;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.repository.OrdenDeTrabajoRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrdenDeTrabajoUpdaterImpl implements OrdenDeTrabajoUpdater {
     private final OrdenDeTrabajoRepository ordenDeTrabajoRepository;
     private final OrdenDeTrabajoMapper ordenDeTrabajoMapper;

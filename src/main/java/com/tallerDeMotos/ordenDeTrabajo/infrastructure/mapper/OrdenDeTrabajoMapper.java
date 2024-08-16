@@ -11,10 +11,10 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring", uses = MotocicletaMapper.class)
 public interface OrdenDeTrabajoMapper {
 
-    @Mapping(source = "motocicleta", target = "motocicleta")
+    @Mapping(source = "motocicleta.id", target = "motocicletaId")
     OrdenDeTrabajoDTO toDTO(OrdenDeTrabajoEntity ordenDeTrabajoEntity);
 
-    @Mapping(source = "motocicleta", target = "motocicleta")
+    @Mapping(source = "motocicletaId", target = "motocicleta.id")
     OrdenDeTrabajoEntity toEntity(OrdenDeTrabajoDTO ordenDeTrabajoDTO);
 
     OrdenDeTrabajo toDomain(OrdenDeTrabajoDTO ordenDeTrabajoDTO);
