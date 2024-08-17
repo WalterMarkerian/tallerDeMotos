@@ -10,6 +10,7 @@ import com.tallerDeMotos.motocicleta.domain.exception.MotocicletaPatenteNotFound
 import com.tallerDeMotos.motocicleta.domain.exception.MotocicletasNotFoundException;
 import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,23 +20,21 @@ import java.util.List;
 @RequestMapping("/api/motocicletas")
 public class MotocicletaController {
 
-    private final MotocicletaCreator motocicletaCreator;
-    private final MotocicletaDeleterByPatente motocicletaDeleterByPatente;
-    private final MotocicletaFindByPatente motocicletaFindByPatente;
-    private final MotocicletaFindAll motocicletaFindAll;
-    private final MotocicletaUpdateByPatente motocicletaUpdateByPatente;
+    @Autowired
+    private MotocicletaCreator motocicletaCreator;
 
-    public MotocicletaController(MotocicletaCreator motocicletaCreator,
-                                 MotocicletaDeleterByPatente motocicletaDeleterByPatente,
-                                 MotocicletaFindByPatente motocicletaFindByPatente,
-                                 MotocicletaFindAll motocicletaFindAll,
-                                 MotocicletaUpdateByPatente motocicletaUpdateByPatente) {
-        this.motocicletaCreator = motocicletaCreator;
-        this.motocicletaDeleterByPatente = motocicletaDeleterByPatente;
-        this.motocicletaFindByPatente = motocicletaFindByPatente;
-        this.motocicletaFindAll = motocicletaFindAll;
-        this.motocicletaUpdateByPatente = motocicletaUpdateByPatente;
-    }
+    @Autowired
+    private MotocicletaDeleterByPatente motocicletaDeleterByPatente;
+
+    @Autowired
+    private MotocicletaFindByPatente motocicletaFindByPatente;
+
+    @Autowired
+    private MotocicletaFindAll motocicletaFindAll;
+
+    @Autowired
+    private MotocicletaUpdateByPatente motocicletaUpdateByPatente;
+
 
     @PostMapping
     public ResponseEntity<MotocicletaDTO> createMotocicleta(@Valid @RequestBody MotocicletaDTO motocicletaDTO) throws MotocicletaDuplicatePatenteException {

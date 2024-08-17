@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class Motocicleta {
-    private Long id;
+    private MotocicletaId motocicletaId;
     private String patente;
     private Marca marca;
     private String modelo;

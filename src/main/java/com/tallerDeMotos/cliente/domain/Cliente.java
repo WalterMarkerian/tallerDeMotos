@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 public class Cliente {
-    private Long id;
+    private ClienteId clienteId;
     private Long dni;
     private LocalDate fechaNacimiento;
     private LocalDate altaCliente;

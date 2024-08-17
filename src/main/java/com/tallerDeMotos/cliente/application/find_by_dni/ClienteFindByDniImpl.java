@@ -5,18 +5,17 @@ import com.tallerDeMotos.cliente.infrastructure.mapper.ClienteMapper;
 import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 import com.tallerDeMotos.cliente.infrastructure.model.entity.ClienteEntity;
 import com.tallerDeMotos.cliente.infrastructure.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteFindByDniImpl implements ClienteFindByDni {
 
-    private final ClienteRepository clienteRepository;
-    private final ClienteMapper clienteMapper;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-    public ClienteFindByDniImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
-        this.clienteRepository = clienteRepository;
-        this.clienteMapper = clienteMapper;
-    }
+    @Autowired
+    private ClienteMapper clienteMapper;
 
     @Override
     public ClienteDTO getClienteByDni(Long dni) throws ClienteNotFoundException {

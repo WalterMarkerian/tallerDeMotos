@@ -7,30 +7,29 @@ import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 import com.tallerDeMotos.cliente.infrastructure.model.entity.ClienteEntity;
 import com.tallerDeMotos.cliente.infrastructure.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteCreatorImpl implements ClienteCreator {
 
-    private final ClienteRepository clienteRepository;
-    private final ClienteMapper clienteMapper;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-    public ClienteCreatorImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
-        this.clienteRepository = clienteRepository;
-        this.clienteMapper = clienteMapper;
-    }
+    @Autowired
+    private ClienteMapper clienteMapper;
+
 
     @Override
     @Transactional
     public ClienteDTO createCliente(ClienteDTO clienteDTO) throws ClienteDuplicateDniException {
-        // Verifica si el DNI ya existe
         if (clienteRepository.existsByDni(clienteDTO.getDni())) {
             throw new ClienteDuplicateDniException();
         }
-        Cliente cliente = clienteMapper.toCliente(clienteDTO);
+        Cliente cliente = clienteMapper.toDomain(clienteDTO);
         ClienteEntity clienteEntity = clienteMapper.toClienteEntity(cliente);
         clienteRepository.save(clienteEntity);
 
-        return clienteMapper.toClienteDTO(cliente);
+        return clienteMapper.toClienteDTO(clienteEntity);
     }
 }

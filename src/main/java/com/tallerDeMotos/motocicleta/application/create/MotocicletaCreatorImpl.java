@@ -6,38 +6,29 @@ import com.tallerDeMotos.motocicleta.infrastructure.mapper.MotocicletaMapper;
 import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
 import com.tallerDeMotos.motocicleta.infrastructure.repository.MotocicletaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
 public class MotocicletaCreatorImpl implements MotocicletaCreator {
-    private final MotocicletaRepository motocicletaRepository;
-    private final MotocicletaMapper motocicletaMapper;
+    @Autowired
+    private MotocicletaRepository motocicletaRepository;
 
-    public MotocicletaCreatorImpl(MotocicletaRepository motocicletaRepository, MotocicletaMapper motocicletaMapper) {
-        this.motocicletaRepository = motocicletaRepository;
-        this.motocicletaMapper = motocicletaMapper;
-    }
+    @Autowired
+    private MotocicletaMapper motocicletaMapper;
 
     @Override
     @Transactional
     public MotocicletaDTO createMoto(MotocicletaDTO motocicletaDTO) throws MotocicletaDuplicatePatenteException {
-        // Verifica si la patente ya existe
         if (motocicletaRepository.existsByPatente(motocicletaDTO.getPatente())) {
             throw new MotocicletaDuplicatePatenteException();
         }
 
-        // Mapea el DTO a dominio
         Motocicleta motocicleta = motocicletaMapper.toMotocicletaDomain(motocicletaDTO);
-
-        // Mapea el dominio a entidad
         MotocicletaEntity motocicletaEntity = motocicletaMapper.toMotocicletaEntity(motocicleta);
-
-        // Guarda la entidad en la base de datos
         MotocicletaEntity savedMotocicletaEntity = motocicletaRepository.save(motocicletaEntity);
-
-        // Mapea la entidad guardada a DTO
         return motocicletaMapper.toMotocicletaDTO(savedMotocicletaEntity);
     }
 }

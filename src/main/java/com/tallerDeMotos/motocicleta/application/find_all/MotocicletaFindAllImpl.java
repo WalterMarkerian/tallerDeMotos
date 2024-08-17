@@ -5,6 +5,7 @@ import com.tallerDeMotos.motocicleta.infrastructure.mapper.MotocicletaMapper;
 import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
 import com.tallerDeMotos.motocicleta.infrastructure.repository.MotocicletaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class MotocicletaFindAllImpl implements MotocicletaFindAll {
 
-    private final MotocicletaRepository motocicletaRepository;
-    private final MotocicletaMapper motocicletaMapper;
+    @Autowired
+    private MotocicletaRepository motocicletaRepository;
 
-    public MotocicletaFindAllImpl(MotocicletaRepository motocicletaRepository, MotocicletaMapper motocicletaMapper) {
-        this.motocicletaRepository = motocicletaRepository;
-        this.motocicletaMapper = motocicletaMapper;
-    }
+    @Autowired
+    private MotocicletaMapper motocicletaMapper;
 
     @Override
     public List<MotocicletaDTO> getAllMotocicletas() throws MotocicletasNotFoundException {

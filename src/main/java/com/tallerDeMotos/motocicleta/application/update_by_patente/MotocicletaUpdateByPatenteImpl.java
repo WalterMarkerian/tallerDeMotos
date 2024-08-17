@@ -6,18 +6,17 @@ import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
 import com.tallerDeMotos.motocicleta.infrastructure.repository.MotocicletaRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MotocicletaUpdateByPatenteImpl implements MotocicletaUpdateByPatente {
 
-    private final MotocicletaRepository motocicletaRepository;
-    private final MotocicletaMapper motocicletaMapper;
+    @Autowired
+    private MotocicletaRepository motocicletaRepository;
 
-    public MotocicletaUpdateByPatenteImpl(MotocicletaRepository motocicletaRepository, MotocicletaMapper motocicletaMapper) {
-        this.motocicletaRepository = motocicletaRepository;
-        this.motocicletaMapper = motocicletaMapper;
-    }
+    @Autowired
+    private MotocicletaMapper motocicletaMapper;
 
     @Override
     @Transactional

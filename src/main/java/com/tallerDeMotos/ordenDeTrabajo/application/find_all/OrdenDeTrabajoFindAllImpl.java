@@ -5,6 +5,7 @@ import com.tallerDeMotos.ordenDeTrabajo.infrastructure.mapper.OrdenDeTrabajoMapp
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.entity.OrdenDeTrabajoEntity;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.repository.OrdenDeTrabajoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +13,12 @@ import java.util.stream.Collectors;
 @Service
 public class OrdenDeTrabajoFindAllImpl implements OrdenDeTrabajoFindAll {
 
-    private final OrdenDeTrabajoRepository ordenDeTrabajoRepository;
+    @Autowired
+    private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
 
-    private final OrdenDeTrabajoMapper ordenDeTrabajoMapper;
+    @Autowired
+    private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
 
-    public OrdenDeTrabajoFindAllImpl(OrdenDeTrabajoRepository ordenDeTrabajoRepository, OrdenDeTrabajoMapper ordenDeTrabajoMapper) {
-        this.ordenDeTrabajoRepository = ordenDeTrabajoRepository;
-        this.ordenDeTrabajoMapper = ordenDeTrabajoMapper;
-    }
 
     @Override
     public List<OrdenDeTrabajoDTO> getAllOrdenesDeTrabajo() throws OrdenDeTrabajoNotFoundException {

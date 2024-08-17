@@ -1,25 +1,26 @@
 package com.tallerDeMotos.ordenDeTrabajo.application.update;
 
+import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoNotFoundException;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.mapper.OrdenDeTrabajoMapper;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.entity.OrdenDeTrabajoEntity;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.repository.OrdenDeTrabajoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrdenDeTrabajoUpdaterImpl implements OrdenDeTrabajoUpdater {
-    private final OrdenDeTrabajoRepository ordenDeTrabajoRepository;
-    private final OrdenDeTrabajoMapper ordenDeTrabajoMapper;
+    @Autowired
+    private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
 
-    public OrdenDeTrabajoUpdaterImpl(OrdenDeTrabajoRepository ordenDeTrabajoRepository, OrdenDeTrabajoMapper ordenDeTrabajoMapper) {
-        this.ordenDeTrabajoRepository = ordenDeTrabajoRepository;
-        this.ordenDeTrabajoMapper = ordenDeTrabajoMapper;
-    }
+    @Autowired
+    private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
+
 
     @Override
-    public OrdenDeTrabajoDTO updateOrdenDeTrabajoById(Long id, OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
-        OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findById(id)
+    public OrdenDeTrabajoDTO updateOrdenDeTrabajoById(OrdenDeTrabajoId ordenDeTrabajoId, OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
+        OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findById(ordenDeTrabajoId.getId())
                 .orElseThrow(OrdenDeTrabajoNotFoundException::new);
 
         ordenDeTrabajoMapper.updateEntityFromDTO(ordenDeTrabajoDTO, ordenDeTrabajoEntity);

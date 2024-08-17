@@ -1,14 +1,17 @@
 package com.tallerDeMotos.ordenDeTrabajo.infrastructure.controller;
 
+import com.tallerDeMotos.motocicleta.domain.exception.MotocicletasNotFoundException;
 import com.tallerDeMotos.ordenDeTrabajo.application.create.OrdenDeTrabajoCreater;
 import com.tallerDeMotos.ordenDeTrabajo.application.delete.OrdenDeTrabajoDeleter;
 import com.tallerDeMotos.ordenDeTrabajo.application.find_all.OrdenDeTrabajoFindAll;
 import com.tallerDeMotos.ordenDeTrabajo.application.find_by_id.OrdenDeTrabajoFindById;
 import com.tallerDeMotos.ordenDeTrabajo.application.update.OrdenDeTrabajoUpdater;
+import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoDuplicateIdException;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoNotFoundException;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,30 +21,30 @@ import java.util.List;
 @RequestMapping("/api/ordenes-de-trabajo")
 public class OrdenDeTrabajoController {
 
-    private final OrdenDeTrabajoCreater ordenDeTrabajoCreater;
-    private final OrdenDeTrabajoDeleter ordenDeTrabajoDeleter;
-    private final OrdenDeTrabajoFindById ordenDeTrabajoFindById;
-    private final OrdenDeTrabajoFindAll ordenDeTrabajoFindAll;
-    private final OrdenDeTrabajoUpdater ordenDeTrabajoUpdater;
+    @Autowired
+    private OrdenDeTrabajoCreater ordenDeTrabajoCreater;
 
-    public OrdenDeTrabajoController(OrdenDeTrabajoCreater ordenDeTrabajoCreater, OrdenDeTrabajoDeleter ordenDeTrabajoDeleter, OrdenDeTrabajoFindById ordenDeTrabajoFindById, OrdenDeTrabajoFindAll ordenDeTrabajoFindAll, OrdenDeTrabajoUpdater ordenDeTrabajoUpdater) {
-        this.ordenDeTrabajoCreater = ordenDeTrabajoCreater;
-        this.ordenDeTrabajoDeleter = ordenDeTrabajoDeleter;
-        this.ordenDeTrabajoFindById = ordenDeTrabajoFindById;
-        this.ordenDeTrabajoFindAll = ordenDeTrabajoFindAll;
-        this.ordenDeTrabajoUpdater = ordenDeTrabajoUpdater;
-    }
+    @Autowired
+    private OrdenDeTrabajoDeleter ordenDeTrabajoDeleter;
 
+    @Autowired
+    private OrdenDeTrabajoFindById ordenDeTrabajoFindById;
+
+    @Autowired
+    private OrdenDeTrabajoFindAll ordenDeTrabajoFindAll;
+
+    @Autowired
+    private OrdenDeTrabajoUpdater ordenDeTrabajoUpdater;
 
     @PostMapping
-    public ResponseEntity<OrdenDeTrabajoDTO> createOrdenDeTrabajo(@Valid @RequestBody OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException {
+    public ResponseEntity<OrdenDeTrabajoDTO> createOrdenDeTrabajo(@Valid @RequestBody OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException, MotocicletasNotFoundException {
         OrdenDeTrabajoDTO createdDTO = ordenDeTrabajoCreater.createOrdenDeTrabajo(ordenDeTrabajoDTO);
         return ResponseEntity.ok(createdDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdenDeTrabajoDTO> getOrdenDeTrabajoById(@PathVariable Long id) throws OrdenDeTrabajoNotFoundException {
-        OrdenDeTrabajoDTO ordenDeTrabajoDTO = ordenDeTrabajoFindById.getOrdenDeTrabajoById(id);
+    public ResponseEntity<OrdenDeTrabajoDTO> getOrdenDeTrabajoById(@PathVariable OrdenDeTrabajoId ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
+        OrdenDeTrabajoDTO ordenDeTrabajoDTO = ordenDeTrabajoFindById.getOrdenDeTrabajoByOrdenDeTrabajoId(ordenDeTrabajoId);
         return ResponseEntity.ok(ordenDeTrabajoDTO);
     }
 
@@ -52,15 +55,15 @@ public class OrdenDeTrabajoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrdenDeTrabajoDTO> updateOrdenDeTrabajo(@PathVariable Long id,
+    public ResponseEntity<OrdenDeTrabajoDTO> updateOrdenDeTrabajo(@PathVariable OrdenDeTrabajoId ordenDeTrabajoId,
                                                                   @Valid @RequestBody OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
-        OrdenDeTrabajoDTO updatedDTO = ordenDeTrabajoUpdater.updateOrdenDeTrabajoById(id, ordenDeTrabajoDTO);
+        OrdenDeTrabajoDTO updatedDTO = ordenDeTrabajoUpdater.updateOrdenDeTrabajoById(ordenDeTrabajoId, ordenDeTrabajoDTO);
         return ResponseEntity.ok(updatedDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrdenDeTrabajo(@PathVariable Long id) throws OrdenDeTrabajoNotFoundException {
-        ordenDeTrabajoDeleter.deleteById(id);
+    public ResponseEntity<Void> deleteOrdenDeTrabajo(@PathVariable OrdenDeTrabajoId ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
+        ordenDeTrabajoDeleter.deleteByOrdenDeTrabajoId(ordenDeTrabajoId);
         return ResponseEntity.accepted().build();
     }
 }

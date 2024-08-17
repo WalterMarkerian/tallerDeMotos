@@ -1,7 +1,9 @@
 package com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tallerDeMotos.motocicleta.domain.MotocicletaId;
 import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
+import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
@@ -13,9 +15,9 @@ import java.util.List;
 @Data
 @Builder
 public class OrdenDeTrabajoDTO {
-    @Schema(description = "Identificador de la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED, example = "123L")
+    @Schema(description = "Identificador de la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(value = "id")
-    Long id;
+    OrdenDeTrabajoId ordenDeTrabajoId;
 
     @Schema(description = "Número de items en la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED, example = "3")
     @JsonProperty(value = "items", required = true)
@@ -40,10 +42,6 @@ public class OrdenDeTrabajoDTO {
     @Schema(description = "Identificador de la motocicleta asociada a la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(value = "motocicletaId", required = true)
     @NotNull(message = "El identificador de la motocicleta es requerido.")
-    Long motocicletaId;  // Solo se guarda el ID de la motocicleta
-
-//    @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]")
-//    @JsonProperty(value = "ordenesDeTrabajo")
-//    List<OrdenDeTrabajoDTO> ordenesDeTrabajo;
+    MotocicletaId motocicletaId;
 
 }

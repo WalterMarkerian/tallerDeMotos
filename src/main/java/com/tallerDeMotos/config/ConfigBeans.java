@@ -1,6 +1,10 @@
 package com.tallerDeMotos.config;
 
+import java.util.Arrays;
 import java.util.Locale;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +33,11 @@ public class ConfigBeans {
 
         return bundleMessageSource;
     }
-
+    @Bean
+    public OpenAPI springShopOpenAPI() {
+        return new OpenAPI()
+                .info(new Info().title("Taller de motos API")
+                        .description("Api para taller de motos con Spring Boot 3")
+                        .version("v1.0"));
+    }
 }

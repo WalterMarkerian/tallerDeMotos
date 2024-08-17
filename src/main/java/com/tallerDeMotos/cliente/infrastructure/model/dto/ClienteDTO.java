@@ -1,5 +1,6 @@
 package com.tallerDeMotos.cliente.infrastructure.model.dto;
 
+import com.tallerDeMotos.cliente.domain.ClienteId;
 import com.tallerDeMotos.cliente.domain.enums.Genero;
 import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,9 +16,9 @@ import java.util.List;
 @Builder
 public class ClienteDTO {
 
-    @Schema(description = "Identificador del cliente", requiredMode = Schema.RequiredMode.REQUIRED, example = "123L")
+    @Schema(description = "Identificador del cliente", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull(message = "El id es requerido.")
-    Long id;
+    ClienteId clienteId;
 
     @Schema(description = "Dni del cliente", requiredMode = Schema.RequiredMode.REQUIRED, example = "1234567890")
     @NotNull(message = "El DNI es requerido.")

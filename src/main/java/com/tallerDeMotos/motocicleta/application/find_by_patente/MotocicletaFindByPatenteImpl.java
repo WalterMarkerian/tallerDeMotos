@@ -5,18 +5,17 @@ import com.tallerDeMotos.motocicleta.infrastructure.mapper.MotocicletaMapper;
 import com.tallerDeMotos.motocicleta.infrastructure.model.dto.MotocicletaDTO;
 import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
 import com.tallerDeMotos.motocicleta.infrastructure.repository.MotocicletaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MotocicletaFindByPatenteImpl implements MotocicletaFindByPatente {
 
-    private final MotocicletaRepository motocicletaRepository;
-    private final MotocicletaMapper motocicletaMapper;
+    @Autowired
+    private MotocicletaRepository motocicletaRepository;
 
-    public MotocicletaFindByPatenteImpl(MotocicletaRepository motocicletaRepository, MotocicletaMapper motocicletaMapper) {
-        this.motocicletaRepository = motocicletaRepository;
-        this.motocicletaMapper = motocicletaMapper;
-    }
+    @Autowired
+    private MotocicletaMapper motocicletaMapper;
 
     @Override
     public MotocicletaDTO getMotocicletaByPatente(String patente) throws MotocicletaPatenteNotFoundException {

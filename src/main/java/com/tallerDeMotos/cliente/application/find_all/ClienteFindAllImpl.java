@@ -5,6 +5,7 @@ import com.tallerDeMotos.cliente.infrastructure.mapper.ClienteMapper;
 import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 import com.tallerDeMotos.cliente.infrastructure.model.entity.ClienteEntity;
 import com.tallerDeMotos.cliente.infrastructure.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class ClienteFindAllImpl implements ClienteFindAll {
 
-    private final ClienteRepository clienteRepository;
-    private final ClienteMapper clienteMapper;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-    public ClienteFindAllImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
-        this.clienteRepository = clienteRepository;
-        this.clienteMapper = clienteMapper;
-    }
+    @Autowired
+    private ClienteMapper clienteMapper;
 
     @Override
     public List<ClienteDTO> getAllClientes() throws ClientesNotFoundException {

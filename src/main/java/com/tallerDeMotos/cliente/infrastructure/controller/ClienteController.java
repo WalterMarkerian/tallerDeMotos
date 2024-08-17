@@ -10,6 +10,7 @@ import com.tallerDeMotos.cliente.domain.exception.ClienteNotFoundException;
 import com.tallerDeMotos.cliente.domain.exception.ClientesNotFoundException;
 import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,19 +20,20 @@ import java.util.List;
 @RequestMapping("/api/clientes")
 public class ClienteController {
 
-    private final ClienteCreator clienteCreator;
-    private final ClienteDeleterByDni clienteDeleteByDni;
-    private final ClienteFindByDni clienteFindByDni;
-    private final ClienteFindAll clienteFindAll;
-    private final ClienteUpdateByDni clienteUpdateByDni;
+    @Autowired
+    private ClienteCreator clienteCreator;
 
-    public ClienteController(ClienteCreator clienteCreator, ClienteDeleterByDni clienteDeleteByDni, ClienteFindByDni clienteFindByDni, ClienteFindAll clienteFindAll, ClienteUpdateByDni clienteUpdateByDni) {
-        this.clienteCreator = clienteCreator;
-        this.clienteDeleteByDni = clienteDeleteByDni;
-        this.clienteFindByDni = clienteFindByDni;
-        this.clienteFindAll = clienteFindAll;
-        this.clienteUpdateByDni = clienteUpdateByDni;
-    }
+    @Autowired
+    private ClienteDeleterByDni clienteDeleteByDni;
+
+    @Autowired
+    private ClienteFindByDni clienteFindByDni;
+
+    @Autowired
+    private ClienteFindAll clienteFindAll;
+
+    @Autowired
+    private ClienteUpdateByDni clienteUpdateByDni;
 
 
     @PostMapping

@@ -1,40 +1,65 @@
 package com.tallerDeMotos.ordenDeTrabajo.application.create;
 
+import com.tallerDeMotos.motocicleta.domain.exception.MotocicletasNotFoundException;
+import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
+import com.tallerDeMotos.motocicleta.infrastructure.repository.MotocicletaRepository;
 import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajo;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoDuplicateIdException;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.mapper.OrdenDeTrabajoMapper;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.entity.OrdenDeTrabajoEntity;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.repository.OrdenDeTrabajoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrdenDeTrabajoCreatorImpl implements OrdenDeTrabajoCreater {
 
-    private final OrdenDeTrabajoRepository ordenDeTrabajoRepository;
-    private final OrdenDeTrabajoMapper ordenDeTrabajoMapper;
+    @Autowired
+    private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
 
-    public OrdenDeTrabajoCreatorImpl(OrdenDeTrabajoRepository ordenDeTrabajoRepository, OrdenDeTrabajoMapper ordenDeTrabajoMapper) {
-        this.ordenDeTrabajoRepository = ordenDeTrabajoRepository;
-        this.ordenDeTrabajoMapper = ordenDeTrabajoMapper;
-    }
+    @Autowired
+    private MotocicletaRepository motocicletaRepository;
 
-    public OrdenDeTrabajoDTO createOrdenDeTrabajo(OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException {
-        // Verificar si la orden de trabajo ya existe en la base de datos
-        if (ordenDeTrabajoRepository.existsById(ordenDeTrabajoDTO.getId())) {
+    @Autowired
+    private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
+
+
+//    public OrdenDeTrabajoDTO createOrdenDeTrabajo(OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException {
+//        if (ordenDeTrabajoRepository.existByOrdenDeTrabajoId(ordenDeTrabajoDTO.getOrdenDeTrabajoId().getId())) {
+//            throw new OrdenDeTrabajoDuplicateIdException();
+//        }
+//
+//        OrdenDeTrabajo ordenDeTrabajo = ordenDeTrabajoMapper.toDomain(ordenDeTrabajoDTO);
+//
+//        OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoMapper.toEntity(ordenDeTrabajoDTO);
+//
+//        OrdenDeTrabajoEntity savedOrdenDeTrabajoEntity = ordenDeTrabajoRepository.save(ordenDeTrabajoEntity);
+//
+//        return ordenDeTrabajoMapper.toDTO(savedOrdenDeTrabajoEntity);
+//    }
+
+    @Override
+    public OrdenDeTrabajoDTO createOrdenDeTrabajo(OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException, MotocicletasNotFoundException {
+        // Verificar si la orden de trabajo ya existe
+        if (ordenDeTrabajoRepository.existByOrdenDeTrabajoId(ordenDeTrabajoDTO.getOrdenDeTrabajoId().getId())) {
             throw new OrdenDeTrabajoDuplicateIdException();
         }
 
-        // Convertir el DTO a la entidad de dominio
-        OrdenDeTrabajo ordenDeTrabajo = ordenDeTrabajoMapper.toDomain(ordenDeTrabajoDTO);
+        // Verificar si la motocicleta existe
+        Long motocicletaId = ordenDeTrabajoDTO.getMotocicletaId().getId();
+        if (!motocicletaRepository.existsById(motocicletaId)) {
+            throw new MotocicletasNotFoundException();
+        }
 
-        // Convertir la entidad de dominio a entidad JPA
+        // Convertir DTO a dominio y entidad
+        OrdenDeTrabajo ordenDeTrabajo = ordenDeTrabajoMapper.toDomain(ordenDeTrabajoDTO);
         OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoMapper.toEntity(ordenDeTrabajoDTO);
 
-        // Guardar la entidad en la base de datos
+        // Guardar la orden de trabajo
         OrdenDeTrabajoEntity savedOrdenDeTrabajoEntity = ordenDeTrabajoRepository.save(ordenDeTrabajoEntity);
 
-        // Convertir la entidad guardada de nuevo a DTO
+        // Convertir la entidad guardada de vuelta a DTO
         return ordenDeTrabajoMapper.toDTO(savedOrdenDeTrabajoEntity);
     }
 }
