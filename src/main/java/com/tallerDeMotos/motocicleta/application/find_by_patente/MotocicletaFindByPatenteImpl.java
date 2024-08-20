@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MotocicletaFindByPatenteImpl implements MotocicletaFindByPatente {
-
     @Autowired
     private MotocicletaRepository motocicletaRepository;
-
     @Autowired
     private MotocicletaMapper motocicletaMapper;
 
@@ -21,7 +19,6 @@ public class MotocicletaFindByPatenteImpl implements MotocicletaFindByPatente {
     public MotocicletaDTO getMotocicletaByPatente(String patente) throws MotocicletaPatenteNotFoundException {
         MotocicletaEntity motocicletaEntity = motocicletaRepository.findByPatente(patente)
                 .orElseThrow(MotocicletaPatenteNotFoundException::new);
-
         return motocicletaMapper.toMotocicletaDTO(motocicletaEntity);
     }
 }

@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TallerDeMotosApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(TallerDeMotosApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TallerDeMotosApplication.class, args);
+    }
 
 }

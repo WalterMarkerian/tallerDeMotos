@@ -13,10 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ClienteFindAllImpl implements ClienteFindAll {
-
     @Autowired
     private ClienteRepository clienteRepository;
-
     @Autowired
     private ClienteMapper clienteMapper;
 

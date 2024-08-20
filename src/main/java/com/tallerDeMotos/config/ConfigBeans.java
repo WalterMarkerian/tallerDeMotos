@@ -15,7 +15,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class ConfigBeans {
-
     @Bean
     public LocaleResolver localeResolver() {
 
@@ -23,7 +22,6 @@ public class ConfigBeans {
         localResolver.setDefaultLocale(new Locale("es", "AR"));
         return localResolver;
     }
-
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ResourceBundleMessageSource bundleMessageSource = new ResourceBundleMessageSource();

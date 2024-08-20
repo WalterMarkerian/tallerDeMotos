@@ -10,14 +10,12 @@ import java.util.Optional;
 
 @Service
 public class ClienteDeleterByDniImpl implements ClienteDeleterByDni {
-
     @Autowired
     private ClienteRepository clienteRepository;
 
     @Override
     public void deleteClienteByDni(Long dni) throws ClienteNotFoundException {
         Optional<ClienteEntity> clienteOptional = clienteRepository.findByDni(dni);
-
         if (clienteOptional.isPresent()) {
             clienteRepository.delete(clienteOptional.get());
         } else {

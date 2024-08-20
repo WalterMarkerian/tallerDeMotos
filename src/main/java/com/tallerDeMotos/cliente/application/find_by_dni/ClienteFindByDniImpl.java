@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClienteFindByDniImpl implements ClienteFindByDni {
-
     @Autowired
     private ClienteRepository clienteRepository;
-
     @Autowired
     private ClienteMapper clienteMapper;
 
@@ -21,7 +19,6 @@ public class ClienteFindByDniImpl implements ClienteFindByDni {
     public ClienteDTO getClienteByDni(Long dni) throws ClienteNotFoundException {
         ClienteEntity clienteEntity = clienteRepository.findByDni(dni)
                 .orElseThrow(ClienteNotFoundException::new);
-
         return clienteMapper.toClienteDTO(clienteEntity);
     }
 }

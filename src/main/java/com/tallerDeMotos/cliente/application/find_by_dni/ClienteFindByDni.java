@@ -5,5 +5,4 @@ import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
 
 public interface ClienteFindByDni {
     ClienteDTO getClienteByDni(Long dni) throws ClienteNotFoundException;
-
 }

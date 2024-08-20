@@ -17,20 +17,14 @@ public class OrdenDeTrabajoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orden_de_trabajo_id")
     private Long ordenDeTrabajoId;
-
     @Column(nullable = false)
     private Integer items;
-
     @Column(nullable = false)
     private String descripcion;
-
     @Column(nullable = false)
     private Double monto;
-
     @Column(name = "alta_orden", nullable = false)
     private LocalDate altaOrden;
-
-    // Método para establecer la relación bidireccional con la motocicleta
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "motocicleta_id", nullable = false)

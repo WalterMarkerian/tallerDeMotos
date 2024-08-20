@@ -11,7 +11,6 @@ import java.util.List;
 
 @Data
 public class Motocicleta {
-//    private MotocicletaId motocicletaId;
     private Long motocicletaId;
     private String patente;
     private Marca marca;
@@ -21,7 +20,6 @@ public class Motocicleta {
     private Integer kilometraje;
     private LocalDate altaMoto;
     private List<OrdenDeTrabajo> ordenesDeTrabajo;
-    // Método para establecer la relación bidireccional con el cliente
     @Setter
     private Cliente cliente;
 

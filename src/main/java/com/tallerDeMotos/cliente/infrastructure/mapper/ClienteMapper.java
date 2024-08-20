@@ -10,14 +10,11 @@ import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoD
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {MotocicletaMapper.class})
-//@Qualifier("clienteIdMapper")
 public interface ClienteMapper {
-
     @Mapping(target = "motocicletas", expression = "java(setClienteIdInMotocicletas(clienteEntity))")
     ClienteDTO toClienteDTO(ClienteEntity clienteEntity);
 

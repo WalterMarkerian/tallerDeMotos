@@ -10,20 +10,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
 public class OrdenDeTrabajoFindAllImpl implements OrdenDeTrabajoFindAll {
-
     @Autowired
     private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
-
     @Autowired
     private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
-
 
     @Override
     public List<OrdenDeTrabajoDTO> getAllOrdenesDeTrabajo() throws OrdenDeTrabajoNotFoundException {
         List<OrdenDeTrabajoEntity> ordenDeTrabajoEntities = ordenDeTrabajoRepository.findAll();
-        if(ordenDeTrabajoEntities.isEmpty()){
+        if (ordenDeTrabajoEntities.isEmpty()) {
             throw new OrdenDeTrabajoNotFoundException();
         }
         return ordenDeTrabajoEntities.stream()

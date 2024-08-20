@@ -6,10 +6,8 @@ import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.entity.OrdenDeTraba
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 @Mapper(componentModel = "spring")
-//@Qualifier("ordenDeTrabajoIdMapper")
 public interface OrdenDeTrabajoMapper {
 
     @Mapping(source = "ordenDeTrabajoId", target = "ordenDeTrabajoId")

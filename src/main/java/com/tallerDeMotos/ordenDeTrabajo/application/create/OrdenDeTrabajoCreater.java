@@ -7,8 +7,5 @@ import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoDuplicate
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 
 public interface OrdenDeTrabajoCreater {
-
     OrdenDeTrabajoDTO createOrdenDeTrabajo(OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException, MotocicletasNotFoundException;
-
-
 }

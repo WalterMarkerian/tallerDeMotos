@@ -1,11 +1,17 @@
 package com.tallerDeMotos.commons.infrastructure.handler;
 
-import com.tallerDeMotos.cliente.domain.exception.*;
-import com.tallerDeMotos.motocicleta.domain.exception.*;
-import com.tallerDeMotos.ordenDeTrabajo.domain.exception.*;
+import com.tallerDeMotos.cliente.domain.exception.ClienteDuplicateDniException;
+import com.tallerDeMotos.cliente.domain.exception.ClienteNotFoundException;
+import com.tallerDeMotos.cliente.domain.exception.ClientesNotFoundException;
 import com.tallerDeMotos.commons.domain.BaseException;
 import com.tallerDeMotos.commons.mapper.ApiErrorMapper;
 import com.tallerDeMotos.commons.model.ApiError;
+import com.tallerDeMotos.motocicleta.domain.exception.MotocicletaDuplicatePatenteException;
+import com.tallerDeMotos.motocicleta.domain.exception.MotocicletaPatenteNotFoundException;
+import com.tallerDeMotos.motocicleta.domain.exception.MotocicletasNotFoundException;
+import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoDuplicateIdException;
+import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoNotFoundException;
+import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenesDeTrabajoNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +30,6 @@ import java.time.format.DateTimeFormatter;
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class GeneralExceptionHandler {
-
     private final ApiErrorMapper errorMapper;
     private final MessageSource messageSource;
 
@@ -52,7 +57,7 @@ public class GeneralExceptionHandler {
 
     @ExceptionHandler({ClienteNotFoundException.class, ClientesNotFoundException.class,
             MotocicletaPatenteNotFoundException.class, MotocicletasNotFoundException.class,
-            OrdenDeTrabajoNotFoundException.class, OrdenesDeTrabajoNotFoundException.class, })
+            OrdenDeTrabajoNotFoundException.class, OrdenesDeTrabajoNotFoundException.class,})
     public ResponseEntity<Object> handleNotFoundExceptions(BaseException e, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(buildGeneralResponse(e, request));
     }
@@ -62,5 +67,4 @@ public class GeneralExceptionHandler {
         BaseException baseException = new BaseException("ERR_UNKNOWN", "Unknown error occurred");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(buildGeneralResponse(baseException, request));
     }
-
 }

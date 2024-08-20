@@ -9,7 +9,6 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface MotocicletaMapper {
-
     @Mapping(source = "motocicletaId", target = "motocicletaId")
     MotocicletaDTO toMotocicletaDTO(MotocicletaEntity motocicletaEntity);
 

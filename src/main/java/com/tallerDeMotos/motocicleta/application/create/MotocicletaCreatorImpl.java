@@ -15,21 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 public class MotocicletaCreatorImpl implements MotocicletaCreator {
     @Autowired
     private MotocicletaRepository motocicletaRepository;
-
     @Autowired
     private MotocicletaMapper motocicletaMapper;
-
     @Autowired
     private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
-
     @Autowired
     private ClienteRepository clienteRepository;
-
     @Autowired
     private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
 
@@ -39,18 +34,11 @@ public class MotocicletaCreatorImpl implements MotocicletaCreator {
         if (motocicletaRepository.existsByPatente(motocicletaDTO.getPatente())) {
             throw new MotocicletaDuplicatePatenteException();
         }
-        // Recupera el ClienteEntity usando el clienteId
         ClienteEntity clienteEntity = clienteRepository.findById(motocicletaDTO.getClienteId())
                 .orElseThrow(ClienteNotFoundException::new);
-
-
         Motocicleta motocicleta = motocicletaMapper.toMotocicletaDomain(motocicletaDTO);
         MotocicletaEntity motocicletaEntity = motocicletaMapper.toMotocicletaEntity(motocicleta);
-
-        // Asigna el cliente a la motocicleta
         motocicletaEntity.setCliente(clienteEntity);
-
-
         MotocicletaEntity savedMotocicletaEntity = motocicletaRepository.save(motocicletaEntity);
         return motocicletaMapper.toMotocicletaDTO(savedMotocicletaEntity);
     }

@@ -10,19 +10,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrdenDeTrabajoFindByIdImpl implements OrdenDeTrabajoFindById {
-
     @Autowired
     private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
-
     @Autowired
     private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
-
 
     @Override
     public OrdenDeTrabajoDTO getOrdenDeTrabajoByOrdenDeTrabajoId(Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findByOrdenDeTrabajoId(ordenDeTrabajoId)
                 .orElseThrow(OrdenDeTrabajoNotFoundException::new);
-
         return ordenDeTrabajoMapper.toDTO(ordenDeTrabajoEntity);
     }
 }

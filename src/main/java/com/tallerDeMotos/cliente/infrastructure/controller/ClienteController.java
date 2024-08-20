@@ -20,29 +20,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteController {
-
     @Autowired
     private ClienteCreator clienteCreator;
-
     @Autowired
     private ClienteDeleterByDni clienteDeleteByDni;
-
     @Autowired
     private ClienteFindByDni clienteFindByDni;
-
     @Autowired
     private ClienteFindAll clienteFindAll;
-
     @Autowired
     private ClienteUpdateByDni clienteUpdateByDni;
 
-
     @PostMapping
-    public ResponseEntity<ClienteDTO> createCliente(@Valid @RequestBody ClienteDTO clienteCreateDTO) throws ClienteDuplicateDniException, MotocicletaDuplicatePatenteException, ClienteNotFoundException {
+    public ResponseEntity<ClienteDTO> createCliente(@Valid @RequestBody ClienteDTO clienteCreateDTO) throws
+            ClienteDuplicateDniException, MotocicletaDuplicatePatenteException, ClienteNotFoundException {
         ClienteDTO clienteDTO = clienteCreator.createCliente(clienteCreateDTO);
         return ResponseEntity.ok(clienteDTO);
     }
-
 
     @GetMapping("/{dni}")
     public ResponseEntity<ClienteDTO> getClienteByDni(@PathVariable Long dni) throws ClienteNotFoundException {

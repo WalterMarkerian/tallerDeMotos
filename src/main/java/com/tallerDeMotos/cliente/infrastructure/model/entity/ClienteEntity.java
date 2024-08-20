@@ -33,7 +33,6 @@ public class ClienteEntity {
     private Genero genero;
     private String telefono;
     private String domicilio;
-
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<MotocicletaEntity> motocicletas = new ArrayList<>();
 

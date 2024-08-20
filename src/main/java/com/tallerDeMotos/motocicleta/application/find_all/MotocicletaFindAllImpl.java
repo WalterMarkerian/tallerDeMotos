@@ -13,10 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class MotocicletaFindAllImpl implements MotocicletaFindAll {
-
     @Autowired
     private MotocicletaRepository motocicletaRepository;
-
     @Autowired
     private MotocicletaMapper motocicletaMapper;
 

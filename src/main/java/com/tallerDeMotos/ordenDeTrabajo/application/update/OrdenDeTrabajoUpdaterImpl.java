@@ -12,19 +12,15 @@ import org.springframework.stereotype.Service;
 public class OrdenDeTrabajoUpdaterImpl implements OrdenDeTrabajoUpdater {
     @Autowired
     private OrdenDeTrabajoRepository ordenDeTrabajoRepository;
-
     @Autowired
     private OrdenDeTrabajoMapper ordenDeTrabajoMapper;
-
 
     @Override
     public OrdenDeTrabajoDTO updateOrdenDeTrabajoById(Long ordenDeTrabajoId, OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findById(ordenDeTrabajoId)
                 .orElseThrow(OrdenDeTrabajoNotFoundException::new);
-
         ordenDeTrabajoMapper.updateEntityFromDTO(ordenDeTrabajoDTO, ordenDeTrabajoEntity);
         ordenDeTrabajoEntity = ordenDeTrabajoRepository.save(ordenDeTrabajoEntity);
-
         return ordenDeTrabajoMapper.toDTO(ordenDeTrabajoEntity);
     }
 }

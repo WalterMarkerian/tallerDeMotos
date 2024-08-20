@@ -19,19 +19,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/ordenes-de-trabajo")
 public class OrdenDeTrabajoController {
-
     @Autowired
     private OrdenDeTrabajoCreater ordenDeTrabajoCreater;
-
     @Autowired
     private OrdenDeTrabajoDeleter ordenDeTrabajoDeleter;
-
     @Autowired
     private OrdenDeTrabajoFindById ordenDeTrabajoFindById;
-
     @Autowired
     private OrdenDeTrabajoFindAll ordenDeTrabajoFindAll;
-
     @Autowired
     private OrdenDeTrabajoUpdater ordenDeTrabajoUpdater;
 

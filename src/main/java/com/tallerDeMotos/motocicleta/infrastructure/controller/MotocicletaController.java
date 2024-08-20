@@ -20,25 +20,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/motocicletas")
 public class MotocicletaController {
-
     @Autowired
     private MotocicletaCreator motocicletaCreator;
-
     @Autowired
     private MotocicletaDeleterByPatente motocicletaDeleterByPatente;
-
     @Autowired
     private MotocicletaFindByPatente motocicletaFindByPatente;
-
     @Autowired
     private MotocicletaFindAll motocicletaFindAll;
-
     @Autowired
     private MotocicletaUpdateByPatente motocicletaUpdateByPatente;
 
-
     @PostMapping
-    public ResponseEntity<MotocicletaDTO> createMotocicleta(@Valid @RequestBody MotocicletaDTO motocicletaDTO) throws MotocicletaDuplicatePatenteException, ClienteNotFoundException {
+    public ResponseEntity<MotocicletaDTO> createMotocicleta(@Valid @RequestBody MotocicletaDTO motocicletaDTO) throws
+            MotocicletaDuplicatePatenteException, ClienteNotFoundException {
         MotocicletaDTO createdMotocicletaDTO = motocicletaCreator.createMoto(motocicletaDTO);
         return ResponseEntity.ok(createdMotocicletaDTO);
     }

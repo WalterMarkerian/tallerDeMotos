@@ -10,7 +10,6 @@ import java.util.Locale;
 public class ErrorMessageCreatorImpl implements ErrorMessageCreator {
     @Autowired
     MessageSource messageResource;
-
     public String getMessage(String code) {
         return messageResource.getMessage(code, null, new Locale("es", "AR"));
     }

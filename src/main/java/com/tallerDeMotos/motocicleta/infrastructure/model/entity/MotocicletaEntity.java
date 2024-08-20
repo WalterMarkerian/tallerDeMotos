@@ -21,35 +21,25 @@ public class MotocicletaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "motocicleta_id")
     private Long motocicletaId;
-
     @Column(nullable = false, unique = true)
     private String patente;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Marca marca;
-
     @Column(nullable = false)
     private String modelo;
-
     @Column(nullable = true)
     private String cilindrada;
-
     @Column(nullable = true)
     private String chasis;
-
     @Column(nullable = true)
     private Integer kilometraje;
-
     @Column(name = "alta_moto")
     private LocalDate altaMoto;
-
-    // Método para establecer la relación bidireccional con el cliente
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
     private ClienteEntity cliente;
-
     @OneToMany(mappedBy = "motocicleta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrdenDeTrabajoEntity> ordenesDeTrabajo = new ArrayList<>();
 

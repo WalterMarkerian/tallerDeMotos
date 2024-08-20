@@ -21,13 +21,11 @@ public class Cliente {
     private String domicilio;
     private List<Motocicleta> motocicletas = new ArrayList<>();
 
-    // Método para agregar una motocicleta a la lista y establecer la relación bidireccional
     public void addMotocicleta(Motocicleta motocicleta) {
         motocicletas.add(motocicleta);
         motocicleta.setCliente(this);
     }
 
-    // Método para eliminar una motocicleta de la lista y romper la relación bidireccional
     public void removeMotocicleta(Motocicleta motocicleta) {
         motocicletas.remove(motocicleta);
         motocicleta.setCliente(null);

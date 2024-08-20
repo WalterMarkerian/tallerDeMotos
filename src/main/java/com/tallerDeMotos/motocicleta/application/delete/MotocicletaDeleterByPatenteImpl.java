@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MotocicletaDeleterByPatenteImpl implements MotocicletaDeleterByPatente {
-
     @Autowired
     private MotocicletaRepository motocicletaRepository;
 
@@ -18,7 +17,6 @@ public class MotocicletaDeleterByPatenteImpl implements MotocicletaDeleterByPate
         if (!motocicletaRepository.existsByPatente(patente)) {
             throw new MotocicletaPatenteNotFoundException();
         }
-
         motocicletaRepository.deleteByPatente(patente);
     }
 }
