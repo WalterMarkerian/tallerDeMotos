@@ -41,7 +41,7 @@ public class OrdenDeTrabajoController {
         return ResponseEntity.ok(createdDTO);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{ordenDeTrabajoId}")
     public ResponseEntity<OrdenDeTrabajoDTO> getOrdenDeTrabajoById(@PathVariable Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoDTO ordenDeTrabajoDTO = ordenDeTrabajoFindById.getOrdenDeTrabajoByOrdenDeTrabajoId(ordenDeTrabajoId);
         return ResponseEntity.ok(ordenDeTrabajoDTO);
@@ -53,14 +53,14 @@ public class OrdenDeTrabajoController {
         return ResponseEntity.ok(ordenes);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{ordenDeTrabajoId}")
     public ResponseEntity<OrdenDeTrabajoDTO> updateOrdenDeTrabajo(@PathVariable Long ordenDeTrabajoId,
                                                                   @Valid @RequestBody OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoDTO updatedDTO = ordenDeTrabajoUpdater.updateOrdenDeTrabajoById(ordenDeTrabajoId, ordenDeTrabajoDTO);
         return ResponseEntity.ok(updatedDTO);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{ordenDeTrabajoId}")
     public ResponseEntity<Void> deleteOrdenDeTrabajo(@PathVariable Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         ordenDeTrabajoDeleter.deleteByOrdenDeTrabajoId(ordenDeTrabajoId);
         return ResponseEntity.accepted().build();

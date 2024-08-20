@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ClienteIdMapper.class, MotocicletaMapper.class})
-@Qualifier("clienteIdMapper")
+@Mapper(componentModel = "spring", uses = {MotocicletaMapper.class})
+//@Qualifier("clienteIdMapper")
 public interface ClienteMapper {
 
     @Mapping(target = "motocicletas", expression = "java(setClienteIdInMotocicletas(clienteEntity))")

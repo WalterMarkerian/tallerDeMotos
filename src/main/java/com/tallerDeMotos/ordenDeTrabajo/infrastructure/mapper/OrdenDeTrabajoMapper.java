@@ -9,7 +9,7 @@ import org.mapstruct.MappingTarget;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 @Mapper(componentModel = "spring")
-@Qualifier("ordenDeTrabajoIdMapper")
+//@Qualifier("ordenDeTrabajoIdMapper")
 public interface OrdenDeTrabajoMapper {
 
     @Mapping(source = "ordenDeTrabajoId", target = "ordenDeTrabajoId")

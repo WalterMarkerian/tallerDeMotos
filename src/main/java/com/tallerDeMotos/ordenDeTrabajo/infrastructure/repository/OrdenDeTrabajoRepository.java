@@ -7,9 +7,5 @@ import java.util.Optional;
 
 public interface OrdenDeTrabajoRepository extends JpaRepository<OrdenDeTrabajoEntity, Long> {
     boolean existsByOrdenDeTrabajoId(Long ordenDeTrabajoId);
-
     Optional<OrdenDeTrabajoEntity> findByOrdenDeTrabajoId(Long ordenDeTrabajoId);
-
-    //boolean existByOrdenDeTrabajoId(Long ordenDeTrabajoId);
-
 }
