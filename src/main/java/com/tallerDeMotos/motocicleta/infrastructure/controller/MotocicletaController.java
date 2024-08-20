@@ -1,5 +1,6 @@
 package com.tallerDeMotos.motocicleta.infrastructure.controller;
 
+import com.tallerDeMotos.cliente.domain.exception.ClienteNotFoundException;
 import com.tallerDeMotos.motocicleta.application.create.MotocicletaCreator;
 import com.tallerDeMotos.motocicleta.application.delete.MotocicletaDeleterByPatente;
 import com.tallerDeMotos.motocicleta.application.find_all.MotocicletaFindAll;
@@ -37,7 +38,7 @@ public class MotocicletaController {
 
 
     @PostMapping
-    public ResponseEntity<MotocicletaDTO> createMotocicleta(@Valid @RequestBody MotocicletaDTO motocicletaDTO) throws MotocicletaDuplicatePatenteException {
+    public ResponseEntity<MotocicletaDTO> createMotocicleta(@Valid @RequestBody MotocicletaDTO motocicletaDTO) throws MotocicletaDuplicatePatenteException, ClienteNotFoundException {
         MotocicletaDTO createdMotocicletaDTO = motocicletaCreator.createMoto(motocicletaDTO);
         return ResponseEntity.ok(createdMotocicletaDTO);
     }

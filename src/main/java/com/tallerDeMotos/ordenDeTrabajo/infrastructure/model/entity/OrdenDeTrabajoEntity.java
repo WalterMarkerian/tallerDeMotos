@@ -1,12 +1,8 @@
 package com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.entity;
 
 import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
-import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -19,13 +15,9 @@ import java.time.LocalDate;
 public class OrdenDeTrabajoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "orden_de_trabajo_id")
+    private Long ordenDeTrabajoId;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "id", column = @Column(name = "orden_de_trabajo_id"))
-    })
-    private OrdenDeTrabajoId ordenDeTrabajoId;
     @Column(nullable = false)
     private Integer items;
 
@@ -38,8 +30,9 @@ public class OrdenDeTrabajoEntity {
     @Column(name = "alta_orden", nullable = false)
     private LocalDate altaOrden;
 
-    @ManyToOne
-    @JoinColumn(name = "motocicleta_id")
+    // Método para establecer la relación bidireccional con la motocicleta
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "motocicleta_id", nullable = false)
     private MotocicletaEntity motocicleta;
-
 }

@@ -9,6 +9,7 @@ import com.tallerDeMotos.cliente.domain.exception.ClienteDuplicateDniException;
 import com.tallerDeMotos.cliente.domain.exception.ClienteNotFoundException;
 import com.tallerDeMotos.cliente.domain.exception.ClientesNotFoundException;
 import com.tallerDeMotos.cliente.infrastructure.model.dto.ClienteDTO;
+import com.tallerDeMotos.motocicleta.domain.exception.MotocicletaDuplicatePatenteException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class ClienteController {
 
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> createCliente(@Valid @RequestBody ClienteDTO clienteCreateDTO) throws ClienteDuplicateDniException {
+    public ResponseEntity<ClienteDTO> createCliente(@Valid @RequestBody ClienteDTO clienteCreateDTO) throws ClienteDuplicateDniException, MotocicletaDuplicatePatenteException, ClienteNotFoundException {
         ClienteDTO clienteDTO = clienteCreator.createCliente(clienteCreateDTO);
         return ResponseEntity.ok(clienteDTO);
     }

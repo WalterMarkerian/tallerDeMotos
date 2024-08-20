@@ -9,8 +9,10 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface OrdenDeTrabajoRepository extends JpaRepository<OrdenDeTrabajoEntity, Long> {
-    @Query("SELECT CASE WHEN COUNT(o) > 0 THEN TRUE ELSE FALSE END FROM OrdenDeTrabajoEntity o WHERE o.ordenDeTrabajoId.id = :id")
-    boolean existByOrdenDeTrabajoId(@Param("id") Long id);
+//    @Query("SELECT CASE WHEN COUNT(o) > 0 THEN TRUE ELSE FALSE END FROM OrdenDeTrabajoEntity o WHERE o.ordenDeTrabajoId.id = :id")
+//    boolean existByOrdenDeTrabajoId(@Param("id") Long id);
+    boolean existsByOrdenDeTrabajoId(Long ordenDeTrabajoId);
+
     Optional<OrdenDeTrabajoEntity> findByOrdenDeTrabajoId(OrdenDeTrabajoId ordenDeTrabajoId);
 
 }

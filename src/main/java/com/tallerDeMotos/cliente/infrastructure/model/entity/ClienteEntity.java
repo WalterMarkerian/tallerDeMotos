@@ -1,8 +1,6 @@
 package com.tallerDeMotos.cliente.infrastructure.model.entity;
 
-import com.tallerDeMotos.cliente.domain.ClienteId;
 import com.tallerDeMotos.cliente.domain.enums.Genero;
-import com.tallerDeMotos.cliente.infrastructure.converter.ClienteIdConverter;
 import com.tallerDeMotos.motocicleta.infrastructure.model.entity.MotocicletaEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,13 +21,8 @@ import java.util.List;
 public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "id", column = @Column(name = "cliente_id"))
-    })
-    private ClienteId clienteId;
+    @Column(name = "cliente_id")
+    private Long clienteId;
     private Long dni;
     private LocalDate fechaNacimiento;
     private LocalDate altaCliente;
@@ -41,6 +34,16 @@ public class ClienteEntity {
     private String telefono;
     private String domicilio;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<MotocicletaEntity> motocicletas = new ArrayList<>();
+
+    public void addMotocicleta(MotocicletaEntity motocicleta) {
+        motocicletas.add(motocicleta);
+        motocicleta.setCliente(this);
+    }
+
+    public void removeMotocicleta(MotocicletaEntity motocicleta) {
+        motocicletas.remove(motocicleta);
+        motocicleta.setCliente(null);
+    }
 }

@@ -42,12 +42,12 @@ public class OrdenDeTrabajoCreatorImpl implements OrdenDeTrabajoCreater {
     @Override
     public OrdenDeTrabajoDTO createOrdenDeTrabajo(OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoDuplicateIdException, MotocicletasNotFoundException {
         // Verificar si la orden de trabajo ya existe
-        if (ordenDeTrabajoRepository.existByOrdenDeTrabajoId(ordenDeTrabajoDTO.getOrdenDeTrabajoId().getId())) {
+        if (ordenDeTrabajoRepository.existsByOrdenDeTrabajoId(ordenDeTrabajoDTO.getOrdenDeTrabajoId())) {
             throw new OrdenDeTrabajoDuplicateIdException();
         }
 
         // Verificar si la motocicleta existe
-        Long motocicletaId = ordenDeTrabajoDTO.getMotocicletaId().getId();
+        Long motocicletaId = ordenDeTrabajoDTO.getMotocicletaId();
         if (!motocicletaRepository.existsById(motocicletaId)) {
             throw new MotocicletasNotFoundException();
         }

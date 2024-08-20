@@ -1,8 +1,6 @@
 package com.tallerDeMotos.motocicleta.infrastructure.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tallerDeMotos.cliente.domain.ClienteId;
-import com.tallerDeMotos.motocicleta.domain.MotocicletaId;
 import com.tallerDeMotos.motocicleta.domain.enums.Marca;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,8 +16,9 @@ import java.util.List;
 @Builder
 public class MotocicletaDTO {
     @Schema(description = "Identificador de la motocicleta", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(value = "id")
-    MotocicletaId motocicletaId;
+    @JsonProperty(value = "motocicletaId")
+    @NotNull(message = "El id es requerido.")
+    Long motocicletaId;
 
     @Schema(description = "Patente de la moto", requiredMode = Schema.RequiredMode.REQUIRED, example = "AAA000")
     @JsonProperty(value = "patente", required = true)
@@ -55,9 +54,9 @@ public class MotocicletaDTO {
     LocalDate altaMoto;
 
     @Schema(description = "Identificador del cliente asociado a la motocicleta", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "1")
-    @JsonProperty(value = "clienteId")
+    @JsonProperty(value = "clienteId", required = true)
     @NotNull(message = "El ID del cliente es requerido.")
-    ClienteId clienteId;
+    Long clienteId;
 
     @Schema(description = "Órdenes de trabajo asociadas a la moto", example = "[]", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(value = "ordenesDeTrabajo", required = false)
