@@ -1,6 +1,5 @@
 package com.tallerDeMotos.ordenDeTrabajo.application.update;
 
-import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoNotFoundException;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.mapper.OrdenDeTrabajoMapper;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
@@ -19,8 +18,8 @@ public class OrdenDeTrabajoUpdaterImpl implements OrdenDeTrabajoUpdater {
 
 
     @Override
-    public OrdenDeTrabajoDTO updateOrdenDeTrabajoById(OrdenDeTrabajoId ordenDeTrabajoId, OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
-        OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findById(ordenDeTrabajoId.getId())
+    public OrdenDeTrabajoDTO updateOrdenDeTrabajoById(Long ordenDeTrabajoId, OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
+        OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findById(ordenDeTrabajoId)
                 .orElseThrow(OrdenDeTrabajoNotFoundException::new);
 
         ordenDeTrabajoMapper.updateEntityFromDTO(ordenDeTrabajoDTO, ordenDeTrabajoEntity);

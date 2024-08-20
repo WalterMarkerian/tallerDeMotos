@@ -1,6 +1,5 @@
 package com.tallerDeMotos.ordenDeTrabajo.application.find_by_id;
 
-import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoNotFoundException;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.mapper.OrdenDeTrabajoMapper;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
@@ -20,7 +19,7 @@ public class OrdenDeTrabajoFindByIdImpl implements OrdenDeTrabajoFindById {
 
 
     @Override
-    public OrdenDeTrabajoDTO getOrdenDeTrabajoByOrdenDeTrabajoId(OrdenDeTrabajoId ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
+    public OrdenDeTrabajoDTO getOrdenDeTrabajoByOrdenDeTrabajoId(Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoEntity ordenDeTrabajoEntity = ordenDeTrabajoRepository.findByOrdenDeTrabajoId(ordenDeTrabajoId)
                 .orElseThrow(OrdenDeTrabajoNotFoundException::new);
 

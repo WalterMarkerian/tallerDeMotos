@@ -6,7 +6,6 @@ import com.tallerDeMotos.ordenDeTrabajo.application.delete.OrdenDeTrabajoDeleter
 import com.tallerDeMotos.ordenDeTrabajo.application.find_all.OrdenDeTrabajoFindAll;
 import com.tallerDeMotos.ordenDeTrabajo.application.find_by_id.OrdenDeTrabajoFindById;
 import com.tallerDeMotos.ordenDeTrabajo.application.update.OrdenDeTrabajoUpdater;
-import com.tallerDeMotos.ordenDeTrabajo.domain.OrdenDeTrabajoId;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoDuplicateIdException;
 import com.tallerDeMotos.ordenDeTrabajo.domain.exception.OrdenDeTrabajoNotFoundException;
 import com.tallerDeMotos.ordenDeTrabajo.infrastructure.model.dto.OrdenDeTrabajoDTO;
@@ -43,7 +42,7 @@ public class OrdenDeTrabajoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdenDeTrabajoDTO> getOrdenDeTrabajoById(@PathVariable OrdenDeTrabajoId ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
+    public ResponseEntity<OrdenDeTrabajoDTO> getOrdenDeTrabajoById(@PathVariable Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoDTO ordenDeTrabajoDTO = ordenDeTrabajoFindById.getOrdenDeTrabajoByOrdenDeTrabajoId(ordenDeTrabajoId);
         return ResponseEntity.ok(ordenDeTrabajoDTO);
     }
@@ -55,14 +54,14 @@ public class OrdenDeTrabajoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrdenDeTrabajoDTO> updateOrdenDeTrabajo(@PathVariable OrdenDeTrabajoId ordenDeTrabajoId,
+    public ResponseEntity<OrdenDeTrabajoDTO> updateOrdenDeTrabajo(@PathVariable Long ordenDeTrabajoId,
                                                                   @Valid @RequestBody OrdenDeTrabajoDTO ordenDeTrabajoDTO) throws OrdenDeTrabajoNotFoundException {
         OrdenDeTrabajoDTO updatedDTO = ordenDeTrabajoUpdater.updateOrdenDeTrabajoById(ordenDeTrabajoId, ordenDeTrabajoDTO);
         return ResponseEntity.ok(updatedDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrdenDeTrabajo(@PathVariable OrdenDeTrabajoId ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
+    public ResponseEntity<Void> deleteOrdenDeTrabajo(@PathVariable Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         ordenDeTrabajoDeleter.deleteByOrdenDeTrabajoId(ordenDeTrabajoId);
         return ResponseEntity.accepted().build();
     }
