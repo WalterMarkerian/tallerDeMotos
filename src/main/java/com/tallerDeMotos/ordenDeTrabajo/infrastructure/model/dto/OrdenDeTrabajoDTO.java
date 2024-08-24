@@ -32,7 +32,7 @@ public class OrdenDeTrabajoDTO {
     @NotNull(message = "La fecha de alta es requerida.")
     LocalDate altaOrden;
     @Schema(description = "Identificador de la motocicleta asociada a la orden de trabajo", requiredMode = Schema.RequiredMode.REQUIRED)
-    @JsonProperty(value = "motocicletaId", required = true)
+    @JsonProperty(value = "motocicletaId")
     @NotNull(message = "El identificador de la motocicleta es requerido.")
     Long motocicletaId;
 }

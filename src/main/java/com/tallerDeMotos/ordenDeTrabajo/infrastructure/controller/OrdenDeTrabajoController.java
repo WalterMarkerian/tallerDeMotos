@@ -56,8 +56,8 @@ public class OrdenDeTrabajoController {
     }
 
     @DeleteMapping("/{ordenDeTrabajoId}")
-    public ResponseEntity<Void> deleteOrdenDeTrabajo(@PathVariable Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
+    public ResponseEntity<Long> deleteOrdenDeTrabajo(@PathVariable Long ordenDeTrabajoId) throws OrdenDeTrabajoNotFoundException {
         ordenDeTrabajoDeleter.deleteByOrdenDeTrabajoId(ordenDeTrabajoId);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().body(ordenDeTrabajoId);
     }
 }

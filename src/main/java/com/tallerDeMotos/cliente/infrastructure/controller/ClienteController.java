@@ -58,8 +58,8 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{dni}")
-    public ResponseEntity<Void> deleteCliente(@PathVariable Long dni) throws ClienteNotFoundException {
+    public ResponseEntity<Long> deleteCliente(@PathVariable Long dni) throws ClienteNotFoundException {
         clienteDeleteByDni.deleteClienteByDni(dni);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().body(dni);
     }
 }

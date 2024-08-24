@@ -58,8 +58,8 @@ public class MotocicletaController {
     }
 
     @DeleteMapping("/{patente}")
-    public ResponseEntity<Void> deleteMotocicleta(@PathVariable String patente) throws MotocicletaPatenteNotFoundException {
+    public ResponseEntity<String> deleteMotocicleta(@PathVariable String patente) throws MotocicletaPatenteNotFoundException {
         motocicletaDeleterByPatente.deleteByPatente(patente);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.accepted().body(patente);
     }
 }
